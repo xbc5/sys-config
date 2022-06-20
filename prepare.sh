@@ -64,11 +64,15 @@ source ./.env
 # NOTE: you will probably EDIT BELOW THIS COMMENT.
 # NOTE: you must set all of these in ./.env, and keep this list updated.
 # These vars point to target directories.
-for var in "$__KITTY_CONFIG_DIR"; do
+for var in "$__KITTY_CONFIG_DIR" "$__MY_SCRIPTS"; do
   if [[ -z "${var}" ]]; then
      echo "Missing path variable, you must set all of them in .env."
      echo "See the script for details."
      exit 3
+  fi
+  if ! [[ -d "${var}" ]]; then
+    echo "The target path doesn't exist, cannot link to it: ${var}"
+    exit 5
   fi
 done
 
@@ -82,6 +86,9 @@ for src in $SOURCES; do
       ;;
     shell/profile)
       create-link $src "/etc/profile.d"
+      ;;
+    scripts)
+      create-link $src "${__MY_SCRIPTS}"
       ;;
   esac
 done

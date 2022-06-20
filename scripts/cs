@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+get="curl --silent https://cht.sh"
+subject="`curl --silent https://cht.sh/:list | fzf`"
+curl --silent https://cht.sh/${subject} | less -r

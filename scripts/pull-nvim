@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+[[ "$1" == "--stable" ]] && release="stable" || release="nightly"
+
+bin="${HOME}/.local/bin"
+img="https://github.com/neovim/neovim/releases/download/${release}/nvim.appimage"
+chksum="https://github.com/neovim/neovim/releases/download/${release}/nvim.appimage.sha256sum"
+
+mkdir -p "$bin"
+cd "$bin"
+
+msg="Perhaps the $release build no longer exists. If pulling nightly, try --stable instead"
+echo "pulling nvim $release.."
+curl -fsSLO --tlsv1.3 "$img" || { echo "$msg"; exit 1; }
+echo 'pulling checksum..'
+curl -fsSLO --tlsv1.3 "$chksum"
+sha256sum -c nvim.appimage.sha256sum
+
+[[ -f "nvim" ]] && rm -f nvim
+rm nvim.appimage.sha256sum
+mv nvim.appimage nvim
+chmod u+x nvim
+
+echo done!

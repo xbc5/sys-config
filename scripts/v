@@ -1,0 +1,10 @@
+#!/bin/bash
+case "$1" in
+  "rm"|"swap"|"del"|"d")
+    rm --force ${HOME}/.local/share/nvim/swap/*.swp || true
+    echo -e "Swap files deleted.."
+    ;;
+  *)
+    nvim $@
+    ;;
+esac
