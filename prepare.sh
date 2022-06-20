@@ -80,5 +80,8 @@ for src in $SOURCES; do
     kitty)
       create-link $src "${__KITTY_CONFIG_DIR}"
       ;;
+    shell/profile)
+      create-link $src "/etc/profile.d"
+      ;;
   esac
 done
