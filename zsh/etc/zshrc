@@ -1,4 +1,3 @@
-#
 # /etc/zshrc is sourced in interactive shells.  It
 # should contain commands to set up aliases, functions,
 # options, key bindings, etc.
@@ -67,6 +66,8 @@ SAVEHIST=10000
 HISTFILE="${HOME}/.cache/zsh/history"
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances of the shell
+
+alias reload="source ${HOME}/.zshrc && echo ZSH reloaded"
 
 # You MUST source this, otherwise plug-ins won't install, and zinit command is undefined.
 source ${MY_SCRIPTS}/init-zinit # won't run if template or root -- it installs plug-ins.
