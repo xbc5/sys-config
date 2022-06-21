@@ -73,6 +73,11 @@ if (( `id -u` >= 1000 )); then
     zinit ice wait lucid
     zinit light reegnz/jq-zsh-plugin
 
+    # FZF select NPM scripts;
+    # TODO: fork and detect yarn|pnpm via package.lock; output command to input line instead
+    zinit ice wait lucid
+    zinit light torifat/npms
+
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
     # https://github.com/zdharma/zinit#completions-2
     autoload -Uz compinit && compinit
