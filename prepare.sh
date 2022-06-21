@@ -87,8 +87,14 @@ for src in $SOURCES; do
     shell/profile)
       create-link $src "/etc/profile.d"
       ;;
+    zsh/etc)
+      create-link $src "/etc"
+      ;;
     scripts)
       create-link $src "${__MY_SCRIPTS}"
+      ;;
+    *)
+      echo "Unknown target: $PKG"
       ;;
   esac
 done
