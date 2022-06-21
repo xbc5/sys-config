@@ -33,21 +33,21 @@ if (( `id -u` >= 1000 )); then
       zdharma-continuum/zinit-annex-patch-dl \
       zdharma-continuum/zinit-annex-rust
     # git
-    zinit ice lucid wait
+    zinit ice wait lucid 
     zinit snippet OMZ::lib/git.zsh # provides git_current_branch(), and others
-    zinit ice lucid wait
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/git/git.plugin.zsh
     # gitignore: gi
-    zinit ice lucid wait
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/gitignore/gitignore.plugin.zsh
     # ssh-agent
-    zinit ice silent wait
+    zinit ice wait silent
     zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
     # tmux
-    zinit ice lucid wait
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
     # fzf command history
-    zinit ice lucid wait'0'
+    zinit ice wait'0' lucid
     zinit light joshskidmore/zsh-fzf-history-search
     # fzf tab complete everything
     zinit light Aloxaf/fzf-tab
@@ -65,7 +65,7 @@ if (( `id -u` >= 1000 )); then
     zinit light starship/starship
 
     ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history) # match_prev: use prev cmd to make predictions
-    zinit ice lucid wait
+    zinit ice wait lucid 
     zinit light zsh-users/zsh-autosuggestions
 
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
