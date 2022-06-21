@@ -60,6 +60,10 @@ if (( `id -u` >= 1000 )); then
     # add git remotes: e.g. add-upstream | add-remote
     zinit light caarlos0-graveyard/git-add-remote
 
+    # prompt: bpick because 'linux-musl.tar.gz(.sha512)' exist
+    zinit ice from"gh-r" as"program" bpick"*linux-gnu.tar.gz"
+    zinit light starship/starship
+
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
     # https://github.com/zdharma/zinit#completions-2
     autoload -Uz compinit && compinit
