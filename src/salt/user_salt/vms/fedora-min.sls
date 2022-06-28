@@ -1,4 +1,4 @@
-ensure-{{ pillar["template"]["pkg"] }}-installed:
+{{ pillar["template"]["pkg"] }}-installed:
   pkg.installed:
     - name: {{ pillar["template"]["pkg"] }}
     - fromrepo: qubes-templates-itl
@@ -10,8 +10,9 @@ clone-template-pkg-to-{{ pillar["template"]["name"] }}:
     - flags:
       - shutdown
 
-fedora-min-prefs-set:
-  qvm.prefs:
-    - name: {{ pillar["template"]["name"] }}
-    - label: {{ pillar["label"][6] }}
-    - netvm: ""
+{% extends "vms/default.sls" %}
+{% block create-vm %}
+  {% block name %}{{ pillar["template"]["name"] }}{% endblock %}
+  {% block label %}{{ pillar["label"][6] }}{% endblock %}
+  {% block vcpus %}4{% endblock %}
+{% endblock create-vm %}

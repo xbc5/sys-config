@@ -1,11 +1,11 @@
 {% block create-vm %}
-ensure-{% block name %}{% endblock %}vm-is-present:
+{% block name %}{% endblock %}-is-present:
   qvm.present:
     - name: {{ self.name() }}
     - template: {% block template %}salt-fedora-min{% endblock %} # FIXME: set to "" for default
     - label: {% block label %}{% endblock %}
 
-set-{{ self.name() }}-vm-prefs:
+{{ self.name() }}-prefs-set:
   qvm.prefs:
     - autostart: {% block autostart %}False{% endblock %} 
     - default-dispvm: {% block default-dispvm %}fedora-dvm{% endblock %} 
@@ -22,4 +22,4 @@ set-{{ self.name() }}-vm-prefs:
     - template: {{ self.template() }}
     - vcpus: {% block vcpus %}1{% endblock %} 
     - virt-mode: {% block virt-mode %}pvh{% endblock %} 
-{% endblock %}
+{% endblock create-vm %}

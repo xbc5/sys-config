@@ -8,4 +8,4 @@ include:
   {% block kernelopts %}{{ pillar["kernelopts"] systemd.unified_cgroup_hierarchy=0 }}
   {% block maxmem %}5000{% endblock %}
   {% block vcpus %}4{% endblock %}
-{{% endblock create-vm %}}
+{% endblock create-vm %}
