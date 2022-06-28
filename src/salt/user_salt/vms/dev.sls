@@ -10,11 +10,12 @@ ensure-{{ pillar["dev"]["name"] }}-vm-is-present:
 set-dev-vm-prefs:
   qvm.prefs:
     - autostart: False
-    - default_dispvm: {{ pillar["default"]["dispvm"] }}
+    - default-dispvm: {{ pillar["default"]["dispvm"] }}
     - default-user: {{ pillar["default"]["user"] }} 
     - include-in-backups: {{ pillar["default"]["backup"] }}
     - kernelopts: {{ pillar["default"]["kernelopts"] }}
     - label: {{ pillar["label"][4] }}
+    - management-dispvm: {{ pillar["default"]["mgmt"] }}
     - maxmem: 5000
     - mem: {{ pillar["default"]["mem"] }}
     - name: {{ pillar["dev"]["name"] }}
@@ -22,4 +23,4 @@ set-dev-vm-prefs:
     - qrexec-timeout: ""
     - template: {{ pillar["default"]["template"] }} # FIXME: rely on qubes-prefs
     - vcpus: 4
-    - virt-mode: {{ pillar["default"]["netvm"] }}
+    - virt-mode: {{ pillar["default"]["virtmode"] }}
