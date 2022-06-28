@@ -1,24 +1,25 @@
 include:
-  - vms.fedora-min # FIXME: use pillar
+  - vms.fedora-min
 
-ensure-dev-vm-is-present:
+ensure-{{ pillar["dev"]["name"] }}-vm-is-present:
   qvm.present:
-    - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
-    - template: salt-fedora-min
+    - name: {{ pillar["dev"]["name"] }}
+    - template: {{ pillar["template"]["name"] }}
     - label: {{ pillar["label"][4] }}
 
 set-dev-vm-prefs:
   qvm.prefs:
-    - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
+    - name: {{ pillar["dev"]["name"] }}
     - label: {{ pillar["label"][4] }}
-    - template: salt-fedora-min
-    - mem: 1000
+    - template: {{ pillar["default"]["template"] }} # FIXME: rely on qubes-prefs
+    - mem: {{ pillar["default"]["mem"] }}
     - maxmem: 5000
+    - default_dispvm: {{ pillar["default"]["dispvm"] }}
     - vcpus: 4
-    - include-in-backups: false
-    - netvm: mfw
-    - virt-mode: pvh
-    - qrexec-timeout: 300
-    - autostart: false
-    - default-user: user
-    - kernelopts: nopat ipv6.disable=1
+    - include-in-backups: {{ pillar["default"]["backup"] }}
+    - netvm: ""
+    - virt-mode: {{ pillar["default"]["netvm"] }}
+    - qrexec-timeout: ""
+    - autostart: False
+    - default-user: {{ pillar["default"]["user"] }} 
+    - kernelopts: {{ pillar["default"]["kernelopts"] }}
