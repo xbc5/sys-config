@@ -1,17 +1,17 @@
-ensure-fedora-min-template-installed:
+ensure-{{ pillar["template"]["pkg"] }}-installed:
   pkg.installed:
-    - name: qubes-template-fedora-35-minimal
+    - name: {{ pillar["template"]["pkg"] }}
     - fromrepo: qubes-templates-itl
 
-clone-fedora-min-base-to-fedora-min:
+clone-template-pkg-to-{{ pillar["template"]["name"] }}:
   qvm.clone:
-    - name: salt-fedora-min
-    - source: fedora-min
+    - name: {{ pillar["template"]["name"] }}
+    - source: fedora-min # FIXME: clone from package when qvm.template-installed exists #1
     - flags:
       - shutdown
 
 fedora-min-prefs-set:
   qvm.prefs:
-    - name: salt-fedora-min
+    - name: {{ pillar["template"]["name"] }}
     - label: {{ pillar["label"][6] }}
-    - netvm: None
+    - netvm: ""
