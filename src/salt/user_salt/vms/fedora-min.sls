@@ -1,4 +1,3 @@
-# vim: ft=yaml
 ensure-fedora-min-template-installed:
   pkg.installed:
     - name: qubes-template-fedora-35-minimal
@@ -10,3 +9,9 @@ clone-fedora-min-base-to-fedora-min:
     - source: fedora-min
     - flags:
       - shutdown
+
+fedora-min-prefs-set:
+  qvm.prefs:
+    - name: salt-fedora-min
+    - label: {{ pillar["label"][6] }}
+    - netvm: None

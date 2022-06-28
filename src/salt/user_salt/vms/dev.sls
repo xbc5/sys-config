@@ -5,12 +5,12 @@ ensure-dev-vm-is-present:
   qvm.present:
     - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
     - template: salt-fedora-min
-    - label: green
+    - label: {{ pillar["label"][4] }}
 
 set-dev-vm-prefs:
   qvm.prefs:
     - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
-    - label: green
+    - label: {{ pillar["label"][4] }}
     - template: salt-fedora-min
     - mem: 1000
     - maxmem: 5000
