@@ -1,18 +1,15 @@
-# vim: ft=yaml
-# FIXM: #pillar
-
 include:
   - vms.fedora-min # FIXME: use pillar
 
 ensure-dev-vm-is-present:
   qvm.present:
-    - name: salt-dev
+    - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
     - template: salt-fedora-min
     - label: green
 
 set-dev-vm-prefs:
   qvm.prefs:
-    - name: salt-dev
+    - name: {{ pillar["qvm-prefs"]["dev"]["name"] }}
     - label: green
     - template: salt-fedora-min
     - mem: 1000
