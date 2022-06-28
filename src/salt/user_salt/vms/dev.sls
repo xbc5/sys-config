@@ -1,6 +1,3 @@
-include:
-  - vms.fedora-min
-
 {% extends "vms/default.sls" %}
 {% block create-vm %}
   {% block name %}{{ pillar["dev"]["name"] }}{% endblock %}
