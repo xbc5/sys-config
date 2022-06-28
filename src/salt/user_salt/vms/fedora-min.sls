@@ -11,8 +11,8 @@ clone-template-pkg-to-{{ pillar["template"]["name"] }}:
       - shutdown
 
 {% extends "vms/default.sls" %}
-{% block create-vm %}
+{% block create_vm %}
   {% block name %}{{ pillar["template"]["name"] }}{% endblock %}
   {% block label %}{{ pillar["label"][6] }}{% endblock %}
   {% block vcpus %}4{% endblock %}
-{% endblock create-vm %}
+{% endblock create_vm %}
