@@ -1,0 +1,6 @@
+# vim: ft=yaml
+user:
+  dom0:
+    - vms.fedora-min
+  salt-fedora-min:
+    - packages.git.install # recipes use git, always enable this state
