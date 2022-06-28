@@ -2,3 +2,4 @@
 user:
   dom0:
     - vm.prefs
+    - vm.labels
