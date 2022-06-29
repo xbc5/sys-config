@@ -1,6 +1,6 @@
 {% macro with_default(option, value) %}
   {%- if option == "kernelopts" -%}
-    nopat ipv6.disable=1 {{value}}
+    {{ pillar["kernelopts"] }} {{value}}
   {%- endif -%}
 {% endmacro %}
 
@@ -9,7 +9,7 @@
   - default-dispvm: {{ used.get("default-dispvm", "fedora-dvm") }}
   - default-user: {{ used.get("default-user", "user") }}
   - include-in-backups: {{ used.get("include-in-backups", False) }}
-  - kernelopts: {{ used.get("include-in-backups", "nopat ipv6.disable=1") }}
+  - kernelopts: {{ used.get("kernelopts", pillar["kernelopts"]) }}
   - label: {{ used["label"] }}
   - management-dispvm: {{ used.get("management-dispvm", "mgmt") }}
   - maxmem: {{ used.get("maxmem", "1500") }}
