@@ -1,22 +1,25 @@
+{% set kernelopts = "nopat ipv6.disable=1" %}
+
 {% macro with_default(option, value) %}
   {%- if option == "kernelopts" -%}
-    {{ pillar["kernelopts"] }} {{value}}
+    {{ kernelopts }} {{value}}
   {%- endif -%}
 {% endmacro %}
 
+{# You can set to None with "", but I have yet to learn how to "default" them. #}
 {% macro common_prefs(used) %}
   - autostart: {{ used.get("autostart", False )}}
   - default-dispvm: {{ used.get("default-dispvm", "fedora-dvm") }}
   - default-user: {{ used.get("default-user", "user") }}
   - include-in-backups: {{ used.get("include-in-backups", False) }}
-  - kernelopts: {{ used.get("kernelopts", pillar["kernelopts"]) }}
+  - kernelopts: {{ used.get("kernelopts", kernelopts) }}
   - label: {{ used["label"] }}
   - management-dispvm: {{ used.get("management-dispvm", "mgmt") }}
   - maxmem: {{ used.get("maxmem", "1500") }}
   - mem: {{ used.get("mem", "600") }}
   - name: {{ used["name"] }}
   - netvm: {{ used.get("netvm", "mfw") }}
-  - qrexec-timeout: {{ used.get("qrexec-timeout", "600") }} # BUG: doesn't accept default ""
+  - qrexec-timeout: {{ used.get("qrexec-timeout", "600") }}
   - shutdown-timeout: {{ used.get("shutdown-timeout", "240") }}
   - virt-mode: {{ used.get("virt-mode", "pvh") }}
 {% endmacro %}
