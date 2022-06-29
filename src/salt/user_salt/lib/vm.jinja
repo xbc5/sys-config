@@ -26,7 +26,7 @@
     - mem: {{ prefs.get("mem", "600") }}
     - name: {{ prefs["name"] }}
     - netvm: {{ prefs.get("netvm", "") }}
-    - qrexec-timeout: {{ prefs.get("qrexec-timeout", "") }}
+    - qrexec-timeout: {{ prefs.get("qrexec-timeout", "600") }} # BUG: doesn't accept default ""
     - shutdown-timeout: {{ prefs.get("shutdown-timeout", "") }}
     - template: {{ prefs.get("template", template) }}
     - vcpus: {{ prefs.get("vcpus", "1") }}
@@ -59,7 +59,7 @@ clone-{{ pkg }}-to-{{ prefs["name"] }}:
     - mem: {{ prefs.get("mem", "600") }}
     - name: {{ prefs["name"] }}
     - netvm: {{ prefs.get("netvm", "") }}
-    - qrexec-timeout:  {{ prefs.get("qrexec-timeout", "") }}
+    - qrexec-timeout:  {{ prefs.get("qrexec-timeout", "600") }} # BUG: doesn't accept default ""
     - shutdown-timeout:  {{ prefs.get("shutdown-timeout", "") }}
     - vcpus: {{ prefs.get("vcpus", "4") }}
     - virt-mode: {{ prefs.get("virt-mode", "pvh") }}
