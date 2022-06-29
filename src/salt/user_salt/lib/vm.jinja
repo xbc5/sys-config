@@ -1,0 +1,67 @@
+{% macro with_default(option, value) %}
+  {%- if option == "kernelopts" -%}
+    nopat ipv6.disable=1 {{value}}
+  {%- endif -%}
+{% endmacro %}
+
+{% macro appvm_from(prefs) %}
+{% set template = "salt-fedora-min" %}
+
+{{ prefs.name }}-is-present:
+  qvm.present:
+    - name: {{ prefs.name }}
+    - template: {{ prefs.get("template", template) }}
+    - label: {{ prefs.label }}
+
+{{ prefs.name }}-prefs-set:
+  qvm.prefs:
+    - autostart: {{ prefs.get("autostart", False )}}
+    - default-dispvm: {{ prefs.get("default-dispvm", "") }}
+    - default-user: {{ prefs.get("default-user", "user") }}  
+    - include-in-backups: {{ prefs.get("include-in-backups", False) }}.
+    - kernelopts: {{ prefs.get("include-in-backups", "nopat ipv6.disable=1") }}.
+    - label: {{ prefs["label"] }}.
+    - management-dispvm: {{ prefs.get("management-dispvm", "mgmt") }}.
+    - maxmem: {{ prefs.get("maxmem", "1500") }}.
+    - mem: {{ prefs.get("mem", "600") }}.
+    - name: {{ prefs["name"] }}.
+    - netvm: {{ prefs.get("netvm", "") }}.
+    - qrexec-timeout: {{ prefs.get("qrexec-timeout", "") }}.
+    - shutdown-timeout: {{ prefs.get("shutdown-timeout", "") }}.
+    - template: {{ prefs.get("template", template) }}.
+    - vcpus: {{ prefs.get("vcpus", "1") }}.
+    - virt-mode: {{ prefs.get("virt-mode", "pvh") }}.
+{% endmacro %}
+
+{% macro templatevm_from(prefs, pkg) %}
+{{ pkg }}-installed:
+  pkg.installed:
+    - name: {{ pkg }}
+    - fromrepo: qubes-templates-itl
+
+clone-{{ pkg }}-to-{{ prefs["name"] }}:
+  qvm.clone:
+    - name: {{ prefs["name"] }}
+    - source: fedora-min # FIXME: clone from package when qvm.template-installed exists #1
+    - flags:
+      - shutdown
+
+{{ prefs["name"] }}-prefs-set:
+  qvm.prefs:
+    - autostart: {{ prefs.get("autostart", False )}}
+    - default-dispvm: {{ prefs.get("default-dispvm", "") }}
+    - default-user: {{ prefs.get("default-user", "user") }}  
+    - include-in-backups: {{ prefs.get("include-in-backups", False) }}.
+    - kernelopts: {{ prefs.get("include-in-backups", "nopat ipv6.disable=1") }}.
+    - label: {{ prefs["label"] }}.
+    - management-dispvm:  {{ prefs.get("management-dispvm", "mgmt") }}.
+    - maxmem: {{ prefs.get("maxmem", "1500") }}.
+    - mem: {{ prefs.get("mem", "600") }}.
+    - name: {{ prefs["name"] }}.
+    - netvm: {{ prefs.get("netvm", "") }}.
+    - qrexec-timeout:  {{ prefs.get("qrexec-timeout", "") }}.
+    - shutdown-timeout:  {{ prefs.get("shutdown-timeout", "") }}.
+    - vcpus: {{ prefs.get("vcpus", "4") }}.
+    - virt-mode: {{ prefs.get("virt-mode", "pvh") }}.
+{% endmacro %}
+

@@ -1,18 +1,8 @@
-{{ pillar["template"]["pkg"] }}-installed:
-  pkg.installed:
-    - name: {{ pillar["template"]["pkg"] }}
-    - fromrepo: qubes-templates-itl
+{% from "lib/vm.jinja" import templatevm_from %}
 
-clone-template-pkg-to-{{ pillar["template"]["name"] }}:
-  qvm.clone:
-    - name: {{ pillar["template"]["name"] }}
-    - source: fedora-min # FIXME: clone from package when qvm.template-installed exists #1
-    - flags:
-      - shutdown
+{% load_yaml as prefs %}
+name: salt-fedora-min
+label: black
+{% endload %}
 
-{% extends "vms/default.sls" %}
-{% block create_vm %}
-  {% block name %}{{ pillar["template"]["name"] }}{% endblock %}
-  {% block label %}{{ pillar["label"][6] }}{% endblock %}
-  {% block vcpus %}4{% endblock %}
-{% endblock create_vm %}
+{{ templatevm_from(prefs, "qubes-template-fedora-35-minimal") }}
