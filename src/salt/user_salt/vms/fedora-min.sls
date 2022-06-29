@@ -1,8 +1,8 @@
 {% from "lib/vm.jinja" import templatevm_from %}
 
 {% load_yaml as prefs %}
-name: salt-fedora-min
-label: black
+name: {{ pillar.template.name }}
+label: {{ pillar.label[6] }}
 {% endload %}
 
-{{ templatevm_from(prefs, "qubes-template-fedora-35-minimal") }}
+{{ templatevm_from(prefs, pillar.template.pkg) }}
