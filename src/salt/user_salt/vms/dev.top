@@ -1,10 +1,9 @@
-# vim: ft=yaml
 user:
   dom0:
     - vms.dev
-  salt-fedora-min: # FIXME: use #pillar #vm
+  {{ pillar.template.name }}:
     - packages.git.install # WARN: needed for cloning; also includes SSH known_hosts
     - packages.nvim.install
-  salt-dev: # FIXME: use #pillar #vm
+  {{ pillar.dev.name }}:
     - packages.nvim.user-config
     - packages.nvim.dev

@@ -1,12 +1,8 @@
-# vim: ft=yaml
-ensure-fedora-min-template-installed:
-  pkg.installed:
-    - name: qubes-template-fedora-35-minimal
-    - fromrepo: qubes-templates-itl
+{% from "lib/vm.jinja" import templatevm_from %}
 
-clone-fedora-min-base-to-fedora-min:
-  qvm.clone:
-    - name: salt-fedora-min
-    - source: fedora-min
-    - flags:
-      - shutdown
+{% load_yaml as prefs %}
+name: {{ pillar.template.name }}
+label: {{ pillar.label[6] }}
+{% endload %}
+
+{{ templatevm_from(prefs, pillar.template.pkg) }}

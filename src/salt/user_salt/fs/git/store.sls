@@ -1,9 +1,8 @@
-# vim: ft=yaml
 git-store-clones-created:
   file.directory:
-    - name: /home/user/git/clones
-    - user: user
-    - group: user
+    - name: {{ pillar.git_clones }}
+    - user: {{ pillar.user }}
+    - group: {{ pillar.user }}
     - dir_mode: 755
     - recurse:
       - user
@@ -12,9 +11,9 @@ git-store-clones-created:
 
 git-store-forks-created:
   file.directory:
-    - name: /home/user/git/forks
-    - user: user
-    - group: user
+    - name: {{ pillar.git_forks }}
+    - user: {{ pillar.user }}
+    - group: {{ pillar.user }}
     - dir_mode: 755
     - recurse:
       - user
