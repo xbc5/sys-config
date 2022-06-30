@@ -1,16 +1,13 @@
 include:
   - fs.project-dirs
 
-{% set out = pillar.paths.projects.linux + "/nvim" %}
+{% set out = pillar.repos.my.nvim.path %}
 
 nvim-dev-config-cloned:
-  git.latest:
+  git.cloned:
     - name: {{ pillar.repos.my.nvim.https }}
     - target: {{ out }}
     - user: {{ pillar.user }}
-    - force_clone: True
-    - force_checkout: True
-    - force_reset: True
 
 nvim-dev-remote-changed:
   cmd.run:
