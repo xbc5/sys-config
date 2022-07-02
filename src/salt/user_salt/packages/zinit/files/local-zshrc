@@ -1,0 +1,6 @@
+# WARN: you MUST init Zinit and the prompt last -- hence don't edit beyond this point.
+source "{{ script }}"
+
+if [[ -n "`command -v starship`" ]]; then
+  eval "$(starship init zsh)"
+fi

@@ -5,6 +5,7 @@
 {% set nvim_name = "nvim" %}
 
 {% set linux_proj = projects + "/linux" %}
+{% set scripts = "/usr/scripts" %}
 
 git_clones: {{ home }}/git/clones
 git_forks: {{ home }}/git/forks
@@ -30,3 +31,6 @@ paths:
     awesome: {{ projects }}/awesome
     hexo: {{ projects }}/hexo
     webext: {{ projects }}/webext
+  scripts:
+    base: {{ scripts }}
+    init_zinit: {{ scripts }}/init-zinit

@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# WARN: this is sourced by /etc/zshrc; don't rely on user arguments, this MUST
-# execute as-is.
-
 if (( `id -u` >= 1000 )); then
   if [[ -e "/run/qubes/this-is-appvm" ]]; then
     should_reload=false
@@ -14,7 +11,7 @@ if (( `id -u` >= 1000 )); then
       git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
       if (( $? != 0 )); then
-        print -P "%F{120}Clone failed!%f"
+	      print -P "%F{120}Clone failed!%f"
         exit 1
       fi
 
@@ -33,33 +30,31 @@ if (( `id -u` >= 1000 )); then
       zdharma-continuum/zinit-annex-patch-dl \
       zdharma-continuum/zinit-annex-rust
     # git
-    zinit ice wait'2' lucid 
+    zinit ice wait lucid 
     zinit snippet OMZ::lib/git.zsh # provides git_current_branch(), and others
-    zinit ice wait'2' lucid 
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/git/git.plugin.zsh
     # gitignore: gi
-    zinit ice wait'4' lucid 
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/gitignore/gitignore.plugin.zsh
     # ssh-agent
-    zinit ice wait'3' silent
+    zinit ice wait silent
     zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
     # tmux
-    zinit ice wait'1' lucid 
+    zinit ice wait lucid 
     zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
     # fzf command history
-    zinit ice wait'2' lucid
+    zinit ice wait'0' lucid
     zinit light joshskidmore/zsh-fzf-history-search
     # fzf tab complete everything
-    zinit ice wait'2' lucid
     zinit light Aloxaf/fzf-tab
     zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa \
            --color=always --classify --icons --long --no-permissions \
            --no-time --git --no-filesize $realpath'
     # wd plug-in
-    zinit ice wait'0' lucid svn
+    zinit ice wait lucid svn
     zinit snippet OMZ::plugins/wd
     # add git remotes: e.g. add-upstream | add-remote
-    zinit ice wait'4' lucid
     zinit light caarlos0-graveyard/git-add-remote
 
     # prompt: bpick because 'linux-musl.tar.gz(.sha512)' exist
@@ -68,16 +63,16 @@ if (( `id -u` >= 1000 )); then
 
     # the greyed out completion text
     ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history) # match_prev: use prev cmd to make predictions
-    zinit ice wait'1' lucid 
+    zinit ice wait lucid 
     zinit light zsh-users/zsh-autosuggestions
 
     # JQ + FZF: interactive queries. <query> alt+j; shift-up|down; alt+r (reload); alt+up|down
-    zinit ice wait'4' lucid
+    zinit ice wait lucid
     zinit light reegnz/jq-zsh-plugin
 
     # FZF select NPM scripts;
     # TODO: fork and detect yarn|pnpm via package.lock; output command to input line instead
-    zinit ice wait'4' lucid
+    zinit ice wait lucid
     zinit light torifat/npms
 
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
@@ -85,7 +80,7 @@ if (( `id -u` >= 1000 )); then
     autoload -Uz compinit && compinit
 
     # docker
-    zinit ice wait'5' lucid atload"zpcdreplay" atpull"zinit creinstall -q ."
+    zinit ice wait lucid atload"zpcdreplay" atpull"zinit creinstall -q ."
     zinit light greymd/docker-zsh-completion
 
     zinit cdreplay -q
@@ -94,5 +89,9 @@ if (( `id -u` >= 1000 )); then
       source "${HOME}/.zshrc" && \
         zinit self-update
     fi
+
+    # remove duplicates from paths, this happens when re-sourcing zshrc
+    typeset -aU path
+    typeset -aU fpath
   fi
 fi
