@@ -5,4 +5,5 @@ user:
     - packages.git.install # WARN: needed for cloning; also includes SSH known_hosts
     - packages.nvim.install
     - packages.zsh.install
+    - packages.exa.install
     - config.shell.profile

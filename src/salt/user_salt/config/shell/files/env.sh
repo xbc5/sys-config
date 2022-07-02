@@ -1,6 +1,7 @@
 export QUBES_GPG_DOMAIN="vault"
 export PAGER="less -R"
 export EDITOR="nvim"
+export TIME_STYLE="long-iso"
 export MY_SCRIPTS="{{ pillar.paths.scripts.base }}"
 
 PATH="${MY_SCRIPTS}:${PATH}"
