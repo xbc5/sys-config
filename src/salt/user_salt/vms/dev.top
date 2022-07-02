@@ -2,10 +2,6 @@ user:
   dom0:
     - vms.dev
   {{ pillar.template.name }}:
-    - packages.git.install # WARN: needed for cloning; also includes SSH known_hosts
-    - packages.nvim.install
-    - packages.zsh.install
-    - config.shell.profile
     - packages.zinit.init-script
   {{ pillar.dev.name }}:
     - packages.nvim.user-config
