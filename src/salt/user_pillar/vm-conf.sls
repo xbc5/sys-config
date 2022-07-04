@@ -5,7 +5,9 @@
 {% set nvim_name = "nvim" %}
 
 {% set linux_proj = projects + "/linux" %}
-{% set scripts = "/usr/scripts" %}
+{% set global_scripts = "/usr/scripts" %}
+{% set local_scripts = "/usr/local/scripts" %}
+{% set profile_dir = "/etc/profile.d" %}
 
 git_clones: {{ home }}/git/clones
 git_forks: {{ home }}/git/forks
@@ -32,5 +34,24 @@ paths:
     hexo: {{ projects }}/hexo
     webext: {{ projects }}/webext
   scripts:
-    base: {{ scripts }}
-    init_zinit: {{ scripts }}/init-zinit
+    local: {{ local_scripts }}
+    global: {{ global_scripts }}
+    init_zinit: {{ global_scripts }}/init-zinit
+  fontconfig:
+    local:
+      fonts: /usr/local/share/fonts
+      cache: /usr/local/share/fontconfig/cache
+  profile_dir: {{ profile_dir }}
+  profile:
+    {# the keys are the file names, they must match its *.sh #}
+    aliases: {{ profile_dir }}/aliases.sh
+    env: {{ profile_dir }}/env.sh
+    functions: {{ profile_dir }}/functions.sh
+
+fonts:
+  nerd:
+    ver: 2.1.0
+    specs:
+      - name: DejaVuSansMono
+        type: Regular
+        filename: "DejaVu Sans Mono Nerd Font Complete Mono.ttf"

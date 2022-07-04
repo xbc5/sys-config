@@ -2,9 +2,12 @@ export QUBES_GPG_DOMAIN="vault"
 export PAGER="less -R"
 export EDITOR="nvim"
 export TIME_STYLE="long-iso"
-export MY_SCRIPTS="{{ pillar.paths.scripts.base }}"
 
-PATH="${MY_SCRIPTS}:${PATH}"
+# {{ pillar.block_msg.scripts.global.start }}
+# {{ pillar.block_msg.scripts.global.end }}
+# {{ pillar.block_msg.scripts.local.start }}
+# {{ pillar.block_msg.scripts.local.end }}
+
 PATH="${HOME}/WIP:${PATH}"
 
 # These should be prepended, and PNPM bins take precedence over NPM

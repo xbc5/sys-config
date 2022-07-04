@@ -19,3 +19,10 @@ block_msg:
   zinit:
     start: "[ZINIT] {{ start }} AFTER THIS LINE"
     end: "[ZINIT] {{ end }} AFTER THIS LINE"
+  scripts:
+    local:
+      start: "[LOCAL_SCRIPTS] {{ start }}"
+      end: "[LOCAL_SCRIPTS] {{ end }}"
+    global:
+      start: "[GLOBAL_SCRIPTS] {{ start }}"
+      end: "[GLOBAL_SCRIPTS] {{ end }}"

@@ -1,7 +1,7 @@
-# vim: ft=yaml
 # WARN: git requires known_hosts, else clones fail
 include:
   - packages.ssh.client # provides known_hosts too
+  - packages.kitty.templatevm.install # my configured difftool requires it
 
 git-installed:
   pkg.installed:

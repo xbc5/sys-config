@@ -3,7 +3,9 @@ user:
     - vms.dev
   {{ pillar.template.name }}:
     - packages.zinit.init-script
+    - packages.fontconfig.templatevm.local # nerd-font requires this
   {{ pillar.dev.name }}:
     - packages.nvim.user-config
     - packages.nvim.dev
     - packages.zinit.install
+    - packages.nerd-fonts.appvm.install # requires fontconfig.template-local to configure appvm local fonts

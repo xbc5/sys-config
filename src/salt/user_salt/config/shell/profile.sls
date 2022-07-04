@@ -1,7 +1,7 @@
-{% set files = ["aliases", "functions", "env"] %}
+{% set files = pillar.paths.profile.keys() %}
 
 {% for f in files %}
-/etc/profile.d/{{ f }}.sh:
+{{ pillar.paths.profile_dir }}/{{ f }}.sh:
   file.managed:
     - source: salt://config/shell/files/{{ f }}.sh
     - user: root

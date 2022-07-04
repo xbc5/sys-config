@@ -6,4 +6,7 @@ user:
     - packages.nvim.install
     - packages.zsh.install
     - packages.exa.install
-    - config.shell.profile
+    - packages.kitty.templatevm.install
+    - config.shell.profile # scripts.appvm.local (appvm) depends on this, don't disable it
+    - config.scripts.templatevm.global
+    - config.scripts.templatevm.local
