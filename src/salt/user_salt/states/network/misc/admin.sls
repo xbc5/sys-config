@@ -6,3 +6,4 @@ network-utils-installed:
       - nmap
       - nmap-ncat
       - traceroute
+      - nethogs

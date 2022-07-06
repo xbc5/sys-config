@@ -11,4 +11,10 @@ misc-packages-installed:
       - sed
       - rsync
       - pciutils
+      - lsof
+      - ripgrep
+      - htop
+      - bashtop
+      - fd-find
+      - cronie
 
