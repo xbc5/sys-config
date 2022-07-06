@@ -1,3 +1,7 @@
+include:
+  - states.fzf.core.admin  # a script uses FZF
+  - states.ssh.core.admin  # there's an SSH script
+
 {{ pillar.paths.profile.functions }}:
   file.managed:
     - source: salt://states/shell/profile/functions/files/functions.sh

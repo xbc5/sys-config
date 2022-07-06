@@ -47,6 +47,7 @@ paths:
     {# the keys are the file names, they must match its *.sh #}
     aliases: {{ profile_dir }}/aliases.sh
     env: {{ profile_dir }}/env.sh
+    fzf: {{ profile_dir }}/fzf.sh
     functions: {{ profile_dir }}/functions.sh
     exa: {{ profile_dir }}/exa.sh
     git: {{ profile_dir }}/git.sh

@@ -1,5 +1,8 @@
 include:
   - states.shell.zsh.core.admin
+  - states.fzf.core.admin  # several plug-ins use FZF
+  - states.ssh.core.admin  # there's an SSH plugin
+  - states.git.core.admin  # git plug-ins, also zinit itself
 
 {% set out = pillar.paths.scripts.init_zinit %}
 
