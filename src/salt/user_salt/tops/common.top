@@ -13,3 +13,4 @@ user:
     - states.shell.profile.env.admin
     - states.shell.profile.functions.admin
     - states.fzf.core.admin                   # fzf with colour and border
+    - states.media.img.admin                  # gimp, inkscape, image viewer etc.
