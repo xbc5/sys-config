@@ -1,0 +1,6 @@
+user:
+  dom0:
+    - states.audio.core.dom0
+  {{ pillar.template.name }}:
+    - states.audio.core.templatevm
+

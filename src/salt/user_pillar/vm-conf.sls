@@ -9,8 +9,6 @@
 {% set local_scripts = "/usr/local/scripts" %}
 {% set profile_dir = "/etc/profile.d" %}
 
-git_clones: {{ home }}/git/clones
-git_forks: {{ home }}/git/forks
 projects: {{ projects }}
 
 {# this is for repositories that you clone, edit, fork, own etc. #}
@@ -27,6 +25,9 @@ repos:
 
 {# these are for empty directories only, not for repository paths #}
 paths:
+  git:
+    clones: {{ home }}/git/clones
+    forks: {{ home }}/git/forks
   projects:
     linux: {{ linux_proj }}
     tools: {{ projects }}/tools
@@ -47,6 +48,8 @@ paths:
     aliases: {{ profile_dir }}/aliases.sh
     env: {{ profile_dir }}/env.sh
     functions: {{ profile_dir }}/functions.sh
+    exa: {{ profile_dir }}/exa.sh
+    git: {{ profile_dir }}/git.sh
 
 fonts:
   nerd:

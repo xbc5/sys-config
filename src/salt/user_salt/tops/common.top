@@ -1,0 +1,14 @@
+user:
+  dom0:
+    - vms.fedora-min.dom0
+  {{ pillar.template.name }}:
+    - states.network.misc.admin           # wireshark, tcpdump etc
+    - states.git.core.admin               # installs git
+    - states.nvim.core.admin              # installs nvim
+    - states.shell.zsh.core.admin         # installs zsh
+    - states.exa.aliases.admin            # installs with aliases
+    - states.kitty.core.admin             # does global config too
+    - states.utils.misc.admin             # tldr, stow, xclip etc.
+    - states.shell.profile.aliases
+    - states.shell.profile.env
+    - states.shell.profile.functions

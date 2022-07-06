@@ -1,4 +1,0 @@
-user:
-  {{ pillar.template }}:
-    - packages.netvm.core
-    - packages.net-utils

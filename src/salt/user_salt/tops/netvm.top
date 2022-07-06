@@ -1,0 +1,4 @@
+user:
+  {{ pillar.template.name }}:
+    - states.vms.netvm.templatevm
+    - states.network.misc.admin
