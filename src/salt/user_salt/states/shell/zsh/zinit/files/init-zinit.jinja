@@ -75,14 +75,11 @@ if (( `id -u` >= 1000 )); then
     zinit ice wait lucid
     zinit light torifat/npms
 
+    # {{ pillar.block_msg.zinit.comps.start }}
+    # {{ pillar.block_msg.zinit.comps.end }}
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
     # https://github.com/zdharma/zinit#completions-2
     autoload -Uz compinit && compinit
-
-    # docker
-    zinit ice wait lucid atload"zpcdreplay" atpull"zinit creinstall -q ."
-    zinit light greymd/docker-zsh-completion
-
     zinit cdreplay -q
 
     if [[ $should_reload == true ]]; then

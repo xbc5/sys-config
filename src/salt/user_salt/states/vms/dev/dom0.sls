@@ -9,4 +9,3 @@ vcpus: 4
 {% endload %}
 
 {{ appvm_from(prefs) }}
-

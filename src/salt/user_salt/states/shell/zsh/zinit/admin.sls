@@ -9,8 +9,19 @@ include:
 zinit-init-script-installed:
   file.managed:
     - name: {{ out }}
-    - source: salt://states/shell/zsh/zinit/files/init-zinit
+    - source: salt://{{ tpldir }}/files/init-zinit.jinja
+    - template: jinja
     - user: root
     - group: root
     - replace: True
     - mode: 755
+
+{{ pillar.id.scripts.init_zinit.comps }}:
+  file.blockreplace:
+    - require:
+      - zinit-init-script-installed
+    - name: {{ out }}
+    - content: "# BUG: indentation is broken, see issue #80"
+    - marker_start: "# {{ pillar.block_msg.zinit.comps.start }}"
+    - marker_end: "# {{ pillar.block_msg.zinit.comps.end }}"
+    - backup: False

@@ -19,6 +19,9 @@ block_msg:
   zinit:
     start: "[ZINIT] {{ start }} AFTER THIS LINE"
     end: "[ZINIT] {{ end }} AFTER THIS LINE"
+    comps:
+      start: "[ZINIT-COMPS] {{ start }}"
+      end: "[ZINIT-COMPS] {{ end }}"
   scripts:
     local:
       start: "[LOCAL_SCRIPTS] {{ start }}"
@@ -26,3 +29,9 @@ block_msg:
     global:
       start: "[GLOBAL_SCRIPTS] {{ start }}"
       end: "[GLOBAL_SCRIPTS] {{ end }}"
+
+{# these IDs are required by other states, this make them less brittle #}
+id:
+  scripts:
+    init_zinit:
+      comps: comps-zone-created-in-zinit-script

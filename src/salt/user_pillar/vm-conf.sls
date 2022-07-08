@@ -25,6 +25,8 @@ repos:
 
 {# these are for empty directories only, not for repository paths #}
 paths:
+  docker:
+    data: /var/lib/docker
   git:
     clones: {{ home }}/git/clones
     forks: {{ home }}/git/forks

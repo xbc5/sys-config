@@ -9,7 +9,7 @@ local-zshrc-perms-set:
 zinit-installed-into-local-zshrc:
   file.blockreplace:
     - name: {{ pillar.home }}/.zshrc
-    - source: salt://states/shell/zsh/zinit/files/local-zshrc
+    - source: salt://{{ tpldir }}/files/local-zshrc
     - template: jinja
     - marker_start: "# {{ pillar.block_msg.zinit.start }}"
     - marker_end: "# {{ pillar.block_msg.zinit.end }}"
