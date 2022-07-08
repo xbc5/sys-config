@@ -1,0 +1,6 @@
+user:
+  {{ pillar.template.name }}:
+    - states.git.core.admin                 # can't clone without git
+    - states.nvim.core.admin                # installs it
+  {{ pillar.dev.name }}:
+    - states.nvim.user.guest                # my config; always latest; not for editing

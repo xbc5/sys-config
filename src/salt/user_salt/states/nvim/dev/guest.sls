@@ -1,27 +1,35 @@
 include:
-  - states.fs.projects.guest
+  - states.fs.projects.guest # store repo here
+  - states.nvim.core.guest # clone packer
 
-{% set out = pillar.repos.my.nvim.path %}
+{% set repo = pillar.repos.my.nvim.path %}
 
 nvim-dev-config-cloned:
   git.cloned:
+    - require:
+      - linux-project-dir-created
     - name: {{ pillar.repos.my.nvim.https }}
-    - target: {{ out }}
+    - target: {{ repo }}
     - user: {{ pillar.user }}
-
-nvim-dev-remote-changed:
   cmd.run:
     - name: git remote set-url origin {{ pillar.repos.my.nvim.git }}
     - runas: {{ pillar.user }}
-    - cwd: {{ out }}
-
-nvim-dev-config-perms-set:
+    - cwd: {{ repo }}
   file.directory:
-    - name: {{ out }}
+    - name: {{ repo }}
     - user: {{ pillar.user }}
     - group: {{ pillar.user }}
-    - dir_mode: 755
     - recurse:
       - user
       - group
-      - mode
+
+nvim-dev-config-linked:
+  file.symlink:
+    - require:
+      - nvim-dev-config-cloned
+    - name: {{ pillar.home }}/.config/nvim
+    - target: {{ repo }}
+    - force: True
+    - makedirs: True
+    - user: {{ pillar.user }}
+    - group: {{ pillar.user }}

@@ -6,14 +6,11 @@ user:
     - states.fontconfig.locals.admin    # local nerd-fonts (kitty) requires this
     - states.git.core.admin             # installs git
     - states.network.misc.admin         # wireshark, tcpdump etc
-    - states.nvim.core.admin            # installs nvim
     - states.kitty.core.admin           # does global config too
     - states.scripts.global.admin       # /usr/scripts
     - states.scripts.local.admin        # /usr/local/scripts (test-nerd-font)
   {{ pillar.dev.name }}:
     - states.kitty.core.guest           # requires fontconfig,locals.admin because it uses local nerd fonts
-    - states.nvim.user.guest            # a useable config
-    - states.nvim.dev.guest             # a local editable repo
     - states.shell.zsh.zinit.guest      # does zshrc
     - states.fs.projects.guest          # create project folders
     - states.git.store.guest            # ~/git

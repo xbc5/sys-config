@@ -1,4 +1,4 @@
 # vim: ft=yaml
-ensure-rawhide-installed:
+rawhide-repo-installed:
   pkg.installed:
     - name: fedora-repos-rawhide

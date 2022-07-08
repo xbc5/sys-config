@@ -2,11 +2,13 @@
 include:
   - states.repos.fedora.rawhide.admin
 
-ensure-older-nvim-removed:
+older-neovim-removed:
   pkg.removed:
+    - require:
+      - rawhide-repo-installed
     - name: neovim
 
-ensure-nvim-installed:
+newest-neovim-installed:
   pkg.installed:
     - name: neovim
     - fromrepo: rawhide

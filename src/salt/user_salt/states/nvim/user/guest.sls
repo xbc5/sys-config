@@ -1,29 +1,34 @@
-packer-nvim-installed:
-  git.latest:
-    - name: https://github.com/wbthomason/packer.nvim.git
-    - target: {{ pillar.home }}/.local/share/nvim/site/pack/packer/start/packer.nvim
-    - user: {{ pillar.user }}
-    - force_clone: True
-    - force_checkout: True
-    - force_reset: True
+include:
+  - states.git.store.guest # store repo here
+  - states.nvim.core.guest # clone packer
 
-nvim-custom-config-cloned:
+{% set repo = pillar.paths.git.clones + "/nvim" %}
+
+nvim-user-config-cloned:
   git.latest:
+    - require:
+      - git-store-clones-created
     - name: {{ pillar.repos.my.nvim.https }}
-    - target: {{ pillar.home }}/.config/nvim
+    - target: {{ repo }}
     - user: {{ pillar.user }}
     - force_clone: True
     - force_checkout: True
     - force_reset: True
 
-nvim-config-perms-set:
+set-nvim-user-config-owner-to-{{ pillar.user }}:
   file.directory:
-    - name: {{ pillar.home }}/.config/nvim
+    - name: {{ repo }}
     - user: {{ pillar.user }}
     - group: {{ pillar.user }}
-    - file_mode: 644
-    - dir_mode: 755
     - recurse:
       - user
       - group
-      - mode
+
+nvim-user-config-linked:
+  file.symlink:
+    - name: {{ pillar.home }}/.config/nvim
+    - target: {{ repo }}
+    - force: True
+    - makedirs: True
+    - user: {{ pillar.user }}
+    - group: {{ pillar.user }}
