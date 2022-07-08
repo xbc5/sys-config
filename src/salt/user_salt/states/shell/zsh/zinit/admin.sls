@@ -22,6 +22,16 @@ zinit-init-script-installed:
       - zinit-init-script-installed
     - name: {{ out }}
     - content: "# BUG: indentation is broken, see issue #80"
-    - marker_start: "# {{ pillar.block_msg.zinit.comps.start }}"
-    - marker_end: "# {{ pillar.block_msg.zinit.comps.end }}"
+    - marker_start: "# {{ pillar.block_msg.completions.start }}"
+    - marker_end: "# {{ pillar.block_msg.completions.end }}"
+    - backup: False
+
+{{ pillar.id.scripts.init_zinit.plugins }}:
+  file.blockreplace:
+    - require:
+      - zinit-init-script-installed
+    - name: {{ out }}
+    - content: "# BUG: indentation is broken, see issue #80"
+    - marker_start: "# {{ pillar.block_msg.plugins.start }}"
+    - marker_end: "# {{ pillar.block_msg.plugins.end }}"
     - backup: False

@@ -66,17 +66,16 @@ if (( `id -u` >= 1000 )); then
     zinit ice wait lucid 
     zinit light zsh-users/zsh-autosuggestions
 
-    # JQ + FZF: interactive queries. <query> alt+j; shift-up|down; alt+r (reload); alt+up|down
-    zinit ice wait lucid
-    zinit light reegnz/jq-zsh-plugin
-
     # FZF select NPM scripts;
     # TODO: fork and detect yarn|pnpm via package.lock; output command to input line instead
     zinit ice wait lucid
     zinit light torifat/npms
 
-    # {{ pillar.block_msg.zinit.comps.start }}
-    # {{ pillar.block_msg.zinit.comps.end }}
+    # {{ pillar.block_msg.plugins.start }}
+    # {{ pillar.block_msg.plugins.end }}
+    #
+    # {{ pillar.block_msg.completions.start }}
+    # {{ pillar.block_msg.completions.end }}
     # load auto-completion engine, must be after plug-ins, and before any cdreplay
     # https://github.com/zdharma/zinit#completions-2
     autoload -Uz compinit && compinit

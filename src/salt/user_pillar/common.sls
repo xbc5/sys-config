@@ -19,9 +19,12 @@ block_msg:
   zinit:
     start: "[ZINIT] {{ start }} AFTER THIS LINE"
     end: "[ZINIT] {{ end }} AFTER THIS LINE"
-    comps:
-      start: "[ZINIT-COMPS] {{ start }}"
-      end: "[ZINIT-COMPS] {{ end }}"
+  completions:
+    start: "[ZINIT-COMPS] {{ start }}"
+    end: "[ZINIT-COMPS] {{ end }}"
+  plugins:
+    start: "[PLUG-INS] {{ start }}"
+    end: "[PLUG-INS] {{ end }}"
   scripts:
     local:
       start: "[LOCAL_SCRIPTS] {{ start }}"
@@ -35,3 +38,4 @@ id:
   scripts:
     init_zinit:
       comps: comps-zone-created-in-zinit-script
+      plugins: plugins-zone-created-in-zinit-script
