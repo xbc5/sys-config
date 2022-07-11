@@ -1,0 +1,3 @@
+[submodule "src/salt/user_salt/files/scripts"]
+	path = src/salt/user_salt/files/scripts
+	url = git@github.com:xbc5/scripts

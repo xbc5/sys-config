@@ -33,9 +33,13 @@ block_msg:
       start: "[GLOBAL_SCRIPTS] {{ start }}"
       end: "[GLOBAL_SCRIPTS] {{ end }}"
 
-{# these IDs are required by other states, this make them less brittle #}
+{# these IDs are required by other states, this make them less brittle -#}
+{# TODO: make these IDs less hierarchical and more descriptive -#}
 id:
+  env_profile_created: {{ salt.pillar.get("paths:profile:env") }}-created
   scripts:
     init_zinit:
       comps: comps-zone-created-in-zinit-script
       plugins: plugins-zone-created-in-zinit-script
+    global:
+      dir_created: global-scripts-dir-created

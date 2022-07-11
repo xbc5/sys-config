@@ -1,4 +1,4 @@
-{{ pillar.paths.profile.env }}:
+{{ pillar.id.env_profile_created }}:
   file.managed:
     - source: salt://states/shell/profile/env/files/env.sh
     - user: root

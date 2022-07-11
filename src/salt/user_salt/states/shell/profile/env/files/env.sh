@@ -8,7 +8,8 @@ export TIME_STYLE="long-iso"
 # {{ pillar.block_msg.scripts.local.start }}
 # {{ pillar.block_msg.scripts.local.end }}
 
-PATH="${HOME}/WIP:${PATH}"
+export WIP="${HOME}/WIP"
+PATH="${WIP}:${PATH}"
 
 # These should be prepended, and PNPM bins take precedence over NPM
 # {{ pillar.block_msg.npm.start }}
