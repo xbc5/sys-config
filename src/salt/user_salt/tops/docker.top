@@ -2,7 +2,7 @@ user:
   dom0:
     - states.vms.dev.docker             # FIXME: refactor, use better targeting (see #79)
   {{ pillar.template.name }}:
-    - states.dnf.core.admin             # +config +plugins +zinit; required by many; don't disable
+    - states.dnf.core.templatevm        # +config +plugins +zinit; required by many; don't disable
     - states.docker.zinit.templatevm    # install docker completions
     - states.docker.core.admin          # a requisite to bind_dirs, you must enable this
     - states.docker.bind_dirs.admin     # make docker dirs persistent between reboots
