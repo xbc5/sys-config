@@ -2,13 +2,9 @@
 {# and has different configuration options, Also, I don't want -#}
 {# to mess with the plug-in system. -#}
 include:
-  - states.dnf.core.templatevm
+  - states.dnf.core.admin
 
-dnf-plugins-core-installed:
-  pkg.installed:
-    - name: dnf-plugins-core
-
-dnf-configured:
+templatevm-dnf-configured:
   file.keyvalue:
     - name: /etc/dnf/dnf.conf
     - separator: "="
@@ -16,6 +12,7 @@ dnf-configured:
     - show_changes: True
     - key_values:
         assumeyes: True
+        clean_requirements_on_remove: True
         localpkg_gpgcheck: True
         sslverify: True
         excludepkgs: awesome-*
