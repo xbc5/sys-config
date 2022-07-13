@@ -1,3 +1,5 @@
 user:
   {{ pillar.template.name }}:
-    - states.dnf.core.templatevm
+    - states.dnf.core.templatevm    # basic config, with plug-ins
+    - states.dnf.core.admin         # apply HTTPs to all repos
+    - states.dnf.rawhide.admin      # will apply HTTPs again if necessary

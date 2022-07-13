@@ -1,6 +1,8 @@
 {# this is for templatevm only because dom0 dnf is older -#}
 {# and has different configuration options, Also, I don't want -#}
 {# to mess with the plug-in system. -#}
+include:
+  - states.dnf.core.templatevm
 
 dnf-plugins-core-installed:
   pkg.installed:
@@ -26,8 +28,3 @@ dnf-configured:
         gpgkey_dns_verification: False
         fastestmirror: True
         max_parallel_downloads: 10
-
-dnf-repo-protocol-set-to-https:
-  cmd.script:
-    - source: salt://{{ tpldir }}/files/set-https.py
-    - runas: root

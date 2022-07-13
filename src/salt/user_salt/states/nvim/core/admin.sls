@@ -1,6 +1,6 @@
 # vim: ft=yaml
 include:
-  - states.repos.fedora.rawhide.admin
+  - states.dnf.rawhide.admin
 
 older-neovim-removed:
   pkg.removed:
