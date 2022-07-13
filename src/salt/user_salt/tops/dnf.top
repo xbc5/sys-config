@@ -1,4 +1,6 @@
 user:
+  dom0:
+    - states.dnf.core.admin         # apply HTTPs to all repos (except unsupported qubes-os.org)
   {{ pillar.template.name }}:
     - states.dnf.core.templatevm    # basic config, with plug-ins
     - states.dnf.core.admin         # apply HTTPs to all repos

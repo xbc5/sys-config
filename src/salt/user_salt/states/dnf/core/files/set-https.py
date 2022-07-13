@@ -14,7 +14,11 @@ if not isdir(CWD):
     raise FileNotFoundError("The target directory must exist in the file system: " + CWD)
 
 # match lines that start with metalink (commented or not) and that don't have protocol=https
-PAT = r'^([# ]*metalink=(?!.+(?:[?&]protocol=https)).+)$'
+#
+# Also ignore qubes-os.org since it doesn't support setting the protocol. Typically you could
+# ignore that fact, but the Regex is trickier to apply since the qubes URLs don't have any
+# GET parameters (meaning applying the protocol would have to consider a '?').
+PAT = r'^([# ]*metalink=(?!.*qubes-os\.org)(?!.+[?&]protocol=https).+)$'
 
 chdir(CWD)
 
