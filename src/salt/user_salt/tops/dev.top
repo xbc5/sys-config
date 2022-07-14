@@ -9,6 +9,7 @@ user:
     - states.kitty.core.admin           # does global config too
     - states.scripts.global.admin       # /usr/scripts
     - states.scripts.local.admin        # /usr/local/scripts (test-nerd-font)
+    - states.lazygit.core.templatevm    # my nvim uses it, and generally useful
   {{ pillar.dev.name }}:
     - states.kitty.core.guest           # requires fontconfig,locals.admin because it uses local nerd fonts
     - states.shell.zsh.zinit.guest      # does zshrc

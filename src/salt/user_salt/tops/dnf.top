@@ -7,3 +7,4 @@ user:
     - states.dnf.core.admin             # apply HTTPs to all repos
     - states.dnf.rawhide.admin          # will apply HTTPs again if necessary
     - states.dnf.rpmfusion.templatevm   # only free
+    - states.dnf.copr.templatevm        # install ALL Copr keys

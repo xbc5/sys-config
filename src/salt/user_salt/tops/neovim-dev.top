@@ -2,5 +2,6 @@ user:
   {{ pillar.template.name }}:
     - states.git.core.admin                 # can't clone without git
     - states.nvim.core.admin                # installs it
+    - states.lazygit.core.templatevm        # the config uses it
   {{ pillar.dev.name }}:
     - states.nvim.dev.guest                 # my editable repo
