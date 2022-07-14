@@ -1,8 +1,9 @@
 user:
   dom0:
-    - states.dnf.core.admin         # apply HTTPs to all repos (except unsupported qubes-os.org)
-    - states.dnf.core.dom0          # apply dom0 config file
+    - states.dnf.core.admin             # apply HTTPs to all repos (except unsupported qubes-os.org)
+    - states.dnf.core.dom0              # apply dom0 config file
   {{ pillar.template.name }}:
-    - states.dnf.core.templatevm    # basic config, with plug-ins
-    - states.dnf.core.admin         # apply HTTPs to all repos
-    - states.dnf.rawhide.admin      # will apply HTTPs again if necessary
+    - states.dnf.core.templatevm        # basic config, with plug-ins
+    - states.dnf.core.admin             # apply HTTPs to all repos
+    - states.dnf.rawhide.admin          # will apply HTTPs again if necessary
+    - states.dnf.rpmfusion.templatevm   # only free
