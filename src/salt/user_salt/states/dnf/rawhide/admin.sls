@@ -6,4 +6,6 @@ rawhide-repo-installed:
   pkg.installed:
     - watch_in:
       - cmd: dnf-repo-protocol-set-to-https
+    - require:
+      - pkg: all-dnf-gpg-keys-installed
     - name: fedora-repos-rawhide
