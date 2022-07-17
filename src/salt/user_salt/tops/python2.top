@@ -1,0 +1,3 @@
+user:
+  {{ pillar.template.name }}:
+    - states.python.python2.admin

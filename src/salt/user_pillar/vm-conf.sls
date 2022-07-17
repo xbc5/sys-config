@@ -8,6 +8,7 @@
 {% set global_scripts = "/usr/scripts" %}
 {% set local_scripts = "/usr/local/scripts" %}
 {% set profile_dir = "/etc/profile.d" %}
+{% set git_clones = home + "/git/clones" %}
 
 projects: {{ projects }}
 
@@ -22,13 +23,21 @@ repos:
       git: git@github.com:{{ github_user }}/nvim.git
       name: {{ nvim_name }}
       path: {{ linux_proj + "/" + nvim_name }}
+  pyenv:
+    https: https://github.com/pyenv/pyenv.git
+    name: pyenv
+    path: {{ home }}/.pyenv  # recommended by pyenv docs
+  pyenv_virtualenv:
+    https: https://github.com/pyenv/pyenv-virtualenv.git 
+    name: pyenv-virtualenv
+    path: {{ home }}/.pyenv/plugins/pyenv-virtualenv
 
 {# these are for empty directories only, not for repository paths #}
 paths:
   docker:
     data: /var/lib/docker
   git:
-    clones: {{ home }}/git/clones
+    clones: {{ git_clones }}
     forks: {{ home }}/git/forks
   projects:
     linux: {{ linux_proj }}

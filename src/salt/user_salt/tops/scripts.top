@@ -2,7 +2,7 @@ user:
   dom0:
     - states.scripts.dom0.dom0          # /usr/scripts: does path and actual scripts too
   {{ pillar.template.name }}:
-    - states.scripts.local.admin        # sets env /usr/local/scripts
+    - states.shell.profile.env.admin    # sets paths; MUST: there' no implicit dep for local scripts
     - states.scripts.domU.templatevm    # /usr/scripts: does path and actual scripts too
   {{ pillar.dev.name }}:
     - states.scripts.local.guest        # create dir /usr/local/scripts

@@ -1,0 +1,9 @@
+user:
+  {{ pillar.template.name }}:
+    - states.git.core.admin           # pyenv is cloned
+    - states.python.python3.admin     # required to use `pyenv install`
+    - states.shell.zsh.core.admin     # my setup inits pyenv via zsh
+    - states.python.pip3.templatevm   # not required, but useful
+    - states.python.pyenv.templatevm  # installs build deps
+  {{ pillar.dev.name }}:
+    - states.python.pyenv.guest       # requires and installs zsh

@@ -2,17 +2,22 @@ user:
   dom0:
     - states.vms.dev.dom0
   {{ pillar.template.name }}:
+    - states.shell.zsh.core.admin       # pyenv needs it; zinit implicitly calls it
     - states.shell.zsh.zinit.admin      # installs init script
     - states.fontconfig.locals.admin    # local nerd-fonts (kitty) requires this
     - states.git.core.admin             # installs git
     - states.network.misc.admin         # wireshark, tcpdump etc
     - states.kitty.core.admin           # does global config too
     - states.scripts.global.admin       # /usr/scripts
-    - states.scripts.local.admin        # /usr/local/scripts (test-nerd-font)
+    - states.shell.profile.env.admin    # [MUST] sets local scripts path
     - states.lazygit.core.templatevm    # my nvim uses it, and generally useful
+    - states.python.python3.admin       # required to use `pyenv install`
+    - states.python.pip3.templatevm     # you will use this no doubt
+    - states.python.pyenv.templatevm    # installs pyenv build deps
   {{ pillar.dev.name }}:
     - states.kitty.core.guest           # requires fontconfig,locals.admin because it uses local nerd fonts
     - states.shell.zsh.zinit.guest      # does zshrc
     - states.fs.projects.guest          # create project folders
     - states.git.store.guest            # ~/git
     - states.scripts.local.guest        # create dir /usr/local/scripts
+    - states.python.pyenv.guest         # requires and installs zsh

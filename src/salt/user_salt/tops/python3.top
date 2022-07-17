@@ -1,0 +1,4 @@
+user:
+  {{ pillar.template.name }}:
+    - states.python.python3.admin
+    - states.python.pip3.templatevm

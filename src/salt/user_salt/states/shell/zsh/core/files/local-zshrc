@@ -1,0 +1,9 @@
+# {{ pillar.block_msg.zinit.start }}
+# {{ pillar.block_msg.zinit.end }}
+
+# make this almost last, pyenv prefixes shims to PATH
+# {{ pillar.block_msg.pyenv.start }}
+# {{ pillar.block_msg.pyenv.end }}
+
+# {{ pillar.block_msg.prompt.start }}
+# {{ pillar.block_msg.prompt.end }}

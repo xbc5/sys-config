@@ -7,18 +7,18 @@ user: {{ user }}
 home: {{ home }}
 
 block_msg:
-  pnpm:
-    start: "[PNPM] {{ start }}"
-    end: "[PNPM] {{ end }}"
-  npm:
-    start: "[NPM] {{ start }}"
-    end: "[NPM] {{ end }}"
   misc:
     start: "[MISC] {{ start }}"
     end: "[MISC] {{ end }}"
+  pyenv:
+    start: "[PYENV] {{ start }}"
+    end: "[PYENV] {{ end }}"
   zinit:
-    start: "[ZINIT] {{ start }} AFTER THIS LINE"
-    end: "[ZINIT] {{ end }} AFTER THIS LINE"
+    start: "[ZINIT] {{ start }}"
+    end: "[ZINIT] {{ end }}"
+  prompt:
+    start: "[PROMPT] {{ start }}"
+    end: "[PROMPT] {{ end }}"
   completions:
     start: "[ZINIT-COMPS] {{ start }}"
     end: "[ZINIT-COMPS] {{ end }}"
