@@ -1,0 +1,8 @@
+name: nvim
+root: ~/.config/nvim
+
+windows:
+  - main:
+      layout: main-vertical
+      panes:
+        - nvim -S

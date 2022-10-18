@@ -1,0 +1,20 @@
+name: blog
+root: ~/projects/blog/blog-unknown/
+
+on_project_exit: killall hugo
+
+windows:
+  - blog:
+      layout: e798,123x54,0,0[123x46,0,0,1,123x7,0,47,3]
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - nvim -S
+        - hugo server --buildDrafts --buildExpired --logFile /tmp/hugo-blog.log --noHTTPCache
+  - theme:
+      root: ~/projects/blog/blog-unknown/themes/code-turkey/
+      layout: e798,123x54,0,0[123x46,0,0,1,123x7,0,47,3]
+      panes:
+        - nvim -S
+        - touch /tmp/hugo-blog.log && tail -F /tmp/hugo-blog.log | grep -E 'ERROR|rebuilding'
