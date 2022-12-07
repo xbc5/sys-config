@@ -8,7 +8,9 @@
 {% set git_clones = home + "/git/clones" %}
 
 {% set doom_dir = ".doom.d" %}
+{% set doom_name = "doomemacs" %}
 {% set doom_path = home + "/" doom_dir %}
+{% set doom_repo = git_clones + "/" doom_name %}
 {% set emacs_notes = linux_proj + "/" emacs-notes %}
 
 {% set global_scripts = "/usr/scripts" %}
@@ -37,6 +39,10 @@ repos:
     https: https://github.com/pyenv/pyenv.git
     name: pyenv
     path: {{ home }}/.pyenv  # recommended by pyenv docs
+  doom_emacs:
+    https: https://github.com/doomemacs/doomemacs.git
+    name: {{ doom_name }}
+    path: {{ doom_repo }}
   pyenv_virtualenv:
     https: https://github.com/pyenv/pyenv-virtualenv.git 
     name: pyenv-virtualenv
