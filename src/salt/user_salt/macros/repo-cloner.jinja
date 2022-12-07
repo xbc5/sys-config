@@ -8,9 +8,9 @@ And for the admin state:
 - include
   - states.git.core.admin
 
-state_name:   The name without a verb -- e.g. foo-bar, not foo-bar-cloned. This macro appends verbs.
 user:         The user name for the local account -- it will become the owner of the repo, and the account that runs the git command.
 require:      A list of requirements to execute before cloning (e.g. create the git store etc). This is identical to the salt `require` statement.
+require_in:   Exactly the same as the `require_in` Salt statement.
 store_path:   The FULL path (including repo dir name) where the repo lives -- typically under your projects directory.
 app_path:     [OPTIONAL] The directory where the main app data lives. Since we clone into the projects store, which directory in the file system should it link from? For example, for nvim it's ~/.config/nvim. This becomes a symlink that points to the repo IF you provide it, otherwise it doesn't create a symlink.
 git_https:    The https link for the repo. This is for cloning without credentials.
@@ -18,15 +18,16 @@ git_ssh:      [OPTIONAL] The Git URL for the repo (e.g. git@github.com). It is s
 
 #}
 {% macro clone(prefs) %}
-include:
-  - states.fs.projects.guest # store repo here
-  - states.nvim.core.guest # clone packer
-
-{{ prefs.state_name }}-cloned:
   git.cloned:
     {% if prefs.require %}
     - require:
       {% for dep in require %}
+      - {{ dep }}
+      {% endfor %}
+    {% end if %}
+    {% if prefs.require_in %}
+    - require_in:
+      {% for dep in require_in %}
       - {{ dep }}
       {% endfor %}
     {% end if %}
@@ -46,17 +47,13 @@ include:
     - recurse:
       - user
       - group
-
-{% if prefs.app_path %}
-{{ prefs.state_name }}-linked:
+  {% if prefs.app_path %}
   file.symlink:
-    - require:
-      - {{ prefs.state_name }}-cloned
     - name: {{ prefs.app_path }}
     - target: {{ prefs.store_path }}
     - force: True
     - makedirs: True
     - user: {{ prefs.user }}
     - group: {{ prefs.user }}
-{ endif }
+  { endif }
 {% endmacro %}
