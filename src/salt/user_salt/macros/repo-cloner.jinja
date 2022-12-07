@@ -14,7 +14,7 @@ proj_include: The name of the dependency that creates the project folder -- e.g.
 store_path:   The FULL path (including repo dir name) where the repo lives -- typically under your projects directory.
 app_path:     The directory where the main app data lives. Since we clone into the projects store, which directory in the file system should it link from? For example, for nvim it's ~/.config/nvim. This becomes a symlink that points to the repo.
 git_https:    The https link for the repo. This is for cloning without credentials.
-git_ssh:      The Git URL for the repo (e.g. git@github.com). It is set on the repo as a remote after cloning.
+git_ssh:      The Git URL for the repo (e.g. git@github.com). It is set on the repo as a remote after cloning. If you leave this blank, the remote is not set.
 
 #}
 {% macro clone(prefs) %}
@@ -29,10 +29,12 @@ include:
     - name: {{ prefs.git_https }}
     - target: {{ prefs.store_path }}
     - user: {{ prefs.user }}
+  {% if prefs.git_ssh %}
   cmd.run:
     - name: git remote set-url origin {{ prefs.git_ssh }}
     - runas: {{ prefs.user }}
     - cwd: {{ prefs.store_path }}
+  {% endif %}
   file.directory:
     - name: {{ prefs.store_path }}
     - user: {{ prefs.user }}
