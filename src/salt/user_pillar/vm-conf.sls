@@ -3,8 +3,10 @@
 {% set github_user = "xbc5" %}
 
 {% set nvim_name = "nvim" %}
+{% set doom_dir = ".doom.d" %}
 
 {% set linux_proj = projects + "/linux" %}
+{% set doom_path = home + "/" doom_dir %}
 {% set global_scripts = "/usr/scripts" %}
 {% set local_scripts = "/usr/local/scripts" %}
 {% set profile_dir = "/etc/profile.d" %}
@@ -23,6 +25,11 @@ repos:
       git: git@github.com:{{ github_user }}/nvim.git
       name: {{ nvim_name }}
       path: {{ linux_proj + "/" + nvim_name }}
+    emacs_notes:
+      https: https://github.com/{{ github_user }}/emacs-notes.git
+      git: git@github.com:{{ github_user }}/emacs-notes.git
+      name: {{ doom_dir }}
+      path: {{ doom_path }}
   pyenv:
     https: https://github.com/pyenv/pyenv.git
     name: pyenv
@@ -36,6 +43,8 @@ repos:
 paths:
   docker:
     data: /var/lib/docker
+  doom_emacs:
+    conf: {{ doom_path }}
   git:
     clones: {{ git_clones }}
     forks: {{ home }}/git/forks
