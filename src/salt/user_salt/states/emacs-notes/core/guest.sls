@@ -1,5 +1,5 @@
 include:
-  - states.git.store.guest
+  - states.fs.projects.guest
 
 {% set repo = pillar.repos.my.emacs_notes %}
 

@@ -1,5 +1,12 @@
 {#
-You MUST do includes on your own. This relies on a project state that ensures the storage location for your repo exists. It also depends on Git.
+You MUST do includes on your own. This relies on a project state that ensures the storage location for your repo exists. It also depends on Git:
+
+For the guest state:
+- include:
+  - states.fs.projects.guest
+And for the admin state:
+- include
+  - states.git.core.admin
 
 state_name:   The name without a verb -- e.g. foo-bar, not foo-bar-cloned. This macro appends verbs.
 user:         The user name for the local account -- it will become the owner of the repo, and the account that runs the git command.
