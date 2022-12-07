@@ -1,5 +1,5 @@
 include:
-  - states.git.store.guest
+  - states.emacs.notes.guest
 
 {% set repo = pillar.repos.doom_emacs %}
 
