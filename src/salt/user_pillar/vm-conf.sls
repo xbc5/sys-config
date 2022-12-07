@@ -3,14 +3,17 @@
 {% set github_user = "xbc5" %}
 
 {% set nvim_name = "nvim" %}
-{% set doom_dir = ".doom.d" %}
 
 {% set linux_proj = projects + "/linux" %}
+{% set git_clones = home + "/git/clones" %}
+
+{% set doom_dir = ".doom.d" %}
 {% set doom_path = home + "/" doom_dir %}
+{% set emacs_notes = linux_proj + "/" emacs-notes %}
+
 {% set global_scripts = "/usr/scripts" %}
 {% set local_scripts = "/usr/local/scripts" %}
 {% set profile_dir = "/etc/profile.d" %}
-{% set git_clones = home + "/git/clones" %}
 
 projects: {{ projects }}
 
@@ -28,8 +31,8 @@ repos:
     emacs_notes:
       https: https://github.com/{{ github_user }}/emacs-notes.git
       git: git@github.com:{{ github_user }}/emacs-notes.git
-      name: {{ doom_dir }}
-      path: {{ doom_path }}
+      name: emacs-notes
+      path: {{ notes_path }}
   pyenv:
     https: https://github.com/pyenv/pyenv.git
     name: pyenv
