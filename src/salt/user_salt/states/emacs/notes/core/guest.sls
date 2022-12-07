@@ -14,5 +14,6 @@ app_path: {{ pillar.paths.doom_emacs.conf }}
 git_https: {{ repo.https }}
 git_ssh: {{ repo.git }}
 {% endload %}
+i
 
 {{ appvm_from(prefs) }}
