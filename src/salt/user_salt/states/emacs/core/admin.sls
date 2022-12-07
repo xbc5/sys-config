@@ -5,3 +5,4 @@ emacs-installed:
       - git
       - ripgrep
       - ag
+      - fd
