@@ -11,11 +11,12 @@ user: {{ pillar.user }}
 require: 
   - linux-project-dir-created
 require_in:
-  - doom-emacs-installed
+  - doom-emacs-plugins-installed
 store_path: {{ repo.path }}
 app_path: {{ pillar.paths.doom_emacs.conf }}
 git_https: {{ repo.https }}
 git_ssh: {{ repo.git }}
 {% endload %}
 
-{{ appvm_from(prefs) }}
+emacs-notes-installed:
+  {{ clone(prefs) }}

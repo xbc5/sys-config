@@ -20,3 +20,11 @@ doom-emacs-installed:
     - name: bin/doom install
     - runas: {{ pillar.user }}
     - cwd: {{ pillar.paths.emacs.conf }}
+
+doom-emacs-plugins-installed:
+  {{ clone(prefs) }}
+  cmd.run:
+    - require: doom-emacs-installed
+    - name: bin/doom sync
+    - runas: {{ pillar.user }}
+    - cwd: {{ pillar.paths.emacs.conf }}
