@@ -50,6 +50,7 @@ paths:
     conf: {{ home }}/.doom.d
   emacs:
     conf: {{ home }}/.emacs.d
+    confd: .emacs.d
   git:
     clones: {{ git_clones }}
     forks: {{ home }}/git/forks
