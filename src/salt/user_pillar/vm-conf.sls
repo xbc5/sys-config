@@ -77,6 +77,9 @@ paths:
     functions: {{ profile_dir }}/functions.sh
     exa: {{ profile_dir }}/exa.sh
     git: {{ profile_dir }}/git.sh
+    doom: {{ profile_dir }}/doom.sh
+  systemd:
+    user: {{ home }}/.config/systemd/user
 
 fonts:
   nerd:
