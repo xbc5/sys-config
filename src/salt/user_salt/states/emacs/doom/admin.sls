@@ -1,8 +1,6 @@
 # vim: ft=yaml
 include:
   - states.emacs.core.admin
-  - states.fzf.core.admin  # a script uses FZF
-  - states.ssh.core.admin  # there's an SSH script
 
 doom-emacs-env-installed:
   file.managed:
