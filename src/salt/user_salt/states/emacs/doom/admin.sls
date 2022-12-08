@@ -5,8 +5,8 @@ include:
 doom-emacs-env-installed:
   file.managed:
     - require: emacs-installed
-    - name: /etc/profile.d/doom.sh
-    - source: salt://states/emacs/doom/files/doom.sh
+    - name: {{ pillar.paths.profile.doom }}
+    - source: salt://{{ tpldir }}/files/doom.sh
     - user: root
     - group: root
     - replace: True
